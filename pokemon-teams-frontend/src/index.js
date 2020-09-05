@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const renderTrainerCard = (trainerArray) => {
   for (const each of trainerArray) {
-    main = document.querySelector('main')
-    div = document.createElement('div')
+    let main = document.querySelector('main')
+    let div = document.createElement('div')
     let p = document.createElement('p')
     let addBtn = document.createElement('button')
     pokeList = document.createElement('ul')
