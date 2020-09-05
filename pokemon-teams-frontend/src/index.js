@@ -47,7 +47,7 @@ const renderTrainerCard = (trainerArray) => {
       submit.className = 'submit'
       submit.innerText = 'Add Pokemon'
       speciesLabel.innerText = 'Species\n'
-      nicknameLabel.innerText = 'Nickname\n'
+      nicknameLabel.innerText = '\nNickname\n'
 
       form.appendChild(speciesLabel)
       form.appendChild(speciesInput)
@@ -59,8 +59,25 @@ const renderTrainerCard = (trainerArray) => {
       submit.addEventListener('click', (e) => {
         e.preventDefault()
         let x = e.target.parentNode
-        console.log()
-        // need to add pokemon to trainer in current form
+        let y = x.parentNode.attributes[1].value
+        console.log(y)
+        fetch('http://localhost:3000/pokemons', {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+            body: JSON.stringify({
+              species: speciesInput.value,
+              nickname: nicknameInput.value
+            })
+          })
+          .then(response => response.json())
+          .then(jsonResponse => console.log(jsonResponse))
+          .catch(error => {
+            console.log(error)
+            alert("Unable to fetch Post")
+          })
       })
     }
   }
